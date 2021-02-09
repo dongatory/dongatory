@@ -11,22 +11,22 @@ import com.kingyu.flappybird.util.GameUtil;
 import com.kingyu.flappybird.util.MusicUtil;
 
 /**
- * 小鸟类，实现小鸟的绘制与飞行逻辑
+ * ChimCap nhat，Cap nhatChimCap nhatVeCap nhat
  *
  * @author Kingyu
  */
 public class Bird {
-    public static final int IMG_COUNT = 8; // 图片数量
-    public static final int STATE_COUNT = 4; // 状态数
-    private final BufferedImage[][] birdImages; // 小鸟的图片数组对象
+    public static final int IMG_COUNT = 8; // Hinh anhCap nhat
+    public static final int STATE_COUNT = 4; // Cap nhat
+    private final BufferedImage[][] birdImages; // ChimCap nhatHinh anhCap nhat
     private final int x;
-    private int y; // 小鸟的坐标
-    private int wingState; // 翅膀状态
+    private int y; // ChimCap nhat
+    private int wingState; // Cap nhat
 
-    // 图片资源
-    private BufferedImage image; // 实时的小鸟图片
+    // Hinh anhCap nhat
+    private BufferedImage image; // Cap nhatChimHinh anh
 
-    // 小鸟的状态
+    // ChimCap nhat
     private int state;
     public static final int BIRD_NORMAL = 0;
     public static final int BIRD_UP = 1;
@@ -34,21 +34,21 @@ public class Bird {
     public static final int BIRD_DEAD_FALL = 3;
     public static final int BIRD_DEAD = 4;
 
-    private final Rectangle birdCollisionRect; // 碰撞矩形
-    public static final int RECT_DESCALE = 2; // 补偿碰撞矩形宽高的参数
+    private final Rectangle birdCollisionRect; // Cap nhat
+    public static final int RECT_DESCALE = 2; // Cap nhat
 
-    private final ScoreCounter counter; // 计分器
+    private final ScoreCounter counter; // Cap nhat
     private final GameOverAnimation gameOverAnimation;
 
     public static int BIRD_WIDTH;
     public static int BIRD_HEIGHT;
 
-    // 在构造器中对资源初始化
+    // Cap nhatKhoi tao
     public Bird() {
-        counter = ScoreCounter.getInstance(); // 计分器
+        counter = ScoreCounter.getInstance(); // Cap nhat
         gameOverAnimation = new GameOverAnimation();
 
-        // 读取小鸟图片资源
+        // Cap nhatChimHinh anhCap nhat
         birdImages = new BufferedImage[STATE_COUNT][IMG_COUNT];
         for (int j = 0; j < STATE_COUNT; j++) {
             for (int i = 0; i < IMG_COUNT; i++) {
@@ -60,33 +60,33 @@ public class Bird {
         BIRD_WIDTH = birdImages[0][0].getWidth();
         BIRD_HEIGHT = birdImages[0][0].getHeight();
 
-        // 初始化小鸟的坐标
+        // Khoi taoChimCap nhat
         x = Constant.FRAME_WIDTH >> 2;
         y = Constant.FRAME_HEIGHT >> 1;
 
-        // 初始化碰撞矩形
+        // Khoi taoCap nhat
         int rectX = x - BIRD_WIDTH / 2;
         int rectY = y - BIRD_HEIGHT / 2;
         birdCollisionRect = new Rectangle(rectX + RECT_DESCALE, rectY + RECT_DESCALE * 2, BIRD_WIDTH - RECT_DESCALE * 3,
-                BIRD_WIDTH - RECT_DESCALE * 4); // 碰撞矩形的坐标与小鸟相同
+                BIRD_WIDTH - RECT_DESCALE * 4); // Cap nhatChimCap nhat
     }
 
-    // 绘制方法
+    // VeCap nhat
     public void draw(Graphics g) {
         movement();
-        int state_index = Math.min(state, BIRD_DEAD_FALL); // 图片资源索引
-        // 小鸟中心点计算
+        int state_index = Math.min(state, BIRD_DEAD_FALL); // Hinh anhCap nhat
+        // ChimCap nhatTinh toan
         int halfImgWidth = birdImages[state_index][0].getWidth() >> 1;
         int halfImgHeight = birdImages[state_index][0].getHeight() >> 1;
         if (velocity > 0)
             image = birdImages[BIRD_UP][0];
-        g.drawImage(image, x - halfImgWidth, y - halfImgHeight, null); // x坐标于窗口1/4处，y坐标位窗口中心
+        g.drawImage(image, x - halfImgWidth, y - halfImgHeight, null); // xCap nhat1/4Cap nhat，yCap nhat
 
         if (state == BIRD_DEAD)
             gameOverAnimation.draw(g, this);
         else if (state != BIRD_DEAD_FALL)
             drawScore(g);
-        // 绘制碰撞矩形
+        // VeCap nhat
 //      g.setColor(Color.black);
 //      g.drawRect((int) birdRect.getX(), (int) birdRect.getY(), (int) birdRect.getWidth(), (int) birdRect.getHeight());
     }
@@ -97,9 +97,9 @@ public class Bird {
     private int velocity = 0; // bird's velocity along Y, default same as playerFlapped
     private final int BOTTOM_BOUNDARY = Constant.FRAME_HEIGHT - GameBackground.GROUND_HEIGHT - (BIRD_HEIGHT / 2);
 
-    // 小鸟的飞行逻辑
+    // ChimCap nhat
     private void movement() {
-        // 翅膀状态，实现小鸟振翅飞行
+        // Cap nhat，Cap nhatChimCap nhat
         wingState++;
         image = birdImages[Math.min(state, BIRD_DEAD_FALL)][wingState / 10 % IMG_COUNT];
         if (state == BIRD_FALL || state == BIRD_DEAD_FALL) {
@@ -126,41 +126,41 @@ public class Bird {
         Game.setGameState(Game.STATE_OVER);
     }
 
-    // 小鸟振翅
+    // ChimCap nhat
     public void birdFlap() {
         if (keyIsReleased()) {
             if (isDead())
                 return;
-            MusicUtil.playFly(); // 播放音效
+            MusicUtil.playFly(); // Cap nhat
             state = BIRD_UP;
             if (birdCollisionRect.y > Constant.TOP_BAR_HEIGHT) {
-                velocity = ACC_FLAP; // 每次振翅将速度改为上升速度
-                wingState = 0; // 重置翅膀状态
+                velocity = ACC_FLAP; // Cap nhatToc doCap nhatToc do
+                wingState = 0; // Dat laiCap nhat
             }
             keyPressed();
         }
     }
 
-    // 小鸟下降
+    // ChimCap nhat
     public void birdFall() {
         if (isDead())
             return;
         state = BIRD_FALL;
     }
 
-    // 小鸟坠落（已死）
+    // ChimCap nhat（Cap nhat）
     public void deadBirdFall() {
         state = BIRD_DEAD_FALL;
-        MusicUtil.playCrash(); // 播放音效
-        velocity = 0;  // 速度置0，防止小鸟继续上升与水管重叠
+        MusicUtil.playCrash(); // Cap nhat
+        velocity = 0;  // Toc doCap nhat0，Cap nhatChimTiep tucCap nhatOng nuocCap nhat
     }
 
-    // 判断小鸟是否死亡
+    // Kiem traChimCap nhat
     public boolean isDead() {
         return state == BIRD_DEAD_FALL || state == BIRD_DEAD;
     }
 
-    // 绘制实时分数
+    // VeCap nhatDiem so
     private void drawScore(Graphics g) {
         g.setColor(Color.white);
         g.setFont(Constant.CURRENT_SCORE_FONT);
@@ -169,19 +169,19 @@ public class Bird {
         g.drawString(str, x, Constant.FRAME_HEIGHT / 10);
     }
 
-    // 重置小鸟
+    // Dat laiChim
     public void reset() {
-        state = BIRD_NORMAL; // 小鸟状态
-        y = Constant.FRAME_HEIGHT >> 1; // 小鸟坐标
-        velocity = 0; // 小鸟速度
+        state = BIRD_NORMAL; // ChimCap nhat
+        y = Constant.FRAME_HEIGHT >> 1; // ChimCap nhat
+        velocity = 0; // ChimToc do
 
         int ImgHeight = birdImages[state][0].getHeight();
-        birdCollisionRect.y = y - ImgHeight / 2 + RECT_DESCALE * 2; // 小鸟碰撞矩形坐标
+        birdCollisionRect.y = y - ImgHeight / 2 + RECT_DESCALE * 2; // ChimCap nhat
 
-        counter.reset(); // 重置计分器
+        counter.reset(); // Dat laiCap nhat
     }
 
-    private boolean keyFlag = true; // 按键状态，true为已释放，使当按住按键时不会重复调用方法
+    private boolean keyFlag = true; // Cap nhat，trueCap nhat，Cap nhat
 
     public void keyPressed() {
         keyFlag = false;
@@ -207,7 +207,7 @@ public class Bird {
         return x;
     }
 
-    // 获取小鸟的碰撞矩形
+    // LayChimCap nhat
     public Rectangle getBirdCollisionRect() {
         return birdCollisionRect;
     }

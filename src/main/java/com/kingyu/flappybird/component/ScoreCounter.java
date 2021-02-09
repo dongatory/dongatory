@@ -10,7 +10,7 @@ import com.kingyu.flappybird.util.Constant;
 import com.kingyu.flappybird.util.MusicUtil;
 
 /**
- * 游戏计时器, 使用静态内部类实现了单例模式
+ * Cap nhat, Cap nhat
  *
  * @author Kingyu
  *
@@ -25,8 +25,8 @@ public class ScoreCounter {
 		return ScoreCounterHolder.scoreCounter;
 	}
 
-	private long score = 0; // 分数
-	private long bestScore; // 最高分数
+	private long score = 0; // Diem so
+	private long bestScore; // Cap nhatDiem so
 
 	private ScoreCounter() {
 		bestScore = -1;
@@ -37,7 +37,7 @@ public class ScoreCounter {
 		}
 	}
 
-	// 装载最高纪录
+	// Cap nhat
 	private void loadBestScore() throws Exception {
 		File file = new File(Constant.SCORE_FILE_PATH);
 		if (file.exists()) {

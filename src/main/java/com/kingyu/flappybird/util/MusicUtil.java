@@ -8,10 +8,10 @@ import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
 /**
- * 音乐工具类
+ * NhacLop tien ich
  *
  * @author Kingyu
- * wav音频：JDK提供的类可直接解码 mp3音频：JDK没有提供支持，需要使用第三方的工具包
+ * wavAm thanh：JDKCap nhat mp3Am thanh：JDKCap nhat，Cap nhat
  */
 public class MusicUtil {
 
@@ -19,7 +19,7 @@ public class MusicUtil {
     private static AudioStream crash;
     private static AudioStream score;
 
-    // wav播放
+    // wavCap nhat
     public static void playFly() {
         try {
             // create an AudioStream from the InputStream

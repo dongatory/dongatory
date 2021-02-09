@@ -6,16 +6,16 @@ import java.util.List;
 import com.kingyu.flappybird.util.Constant;
 
 /**
- * 水管对象池
- * 为了避免反复地创建和销毁对象，使用对象池来提前创建好一些对象，使用时从对象池中获得，使用完后归还
+ * Ong nuocNhom doi tuong
+ * Cap nhatTaoCap nhatHuyCap nhat，Cap nhatNhom doi tuongCap nhatTaoCap nhat，Cap nhatNhom doi tuongCap nhat，Cap nhat
  * 
  * @author Kingyu
  *
  */
 public class PipePool {
-	private static final List<Pipe> pool = new ArrayList<>(); // 池中对象的容器
-	private static final List<MovingPipe> movingPool = new ArrayList<>(); // 池中对象的容器
-	public static final int MAX_PIPE_COUNT = 30; // 对象池中对象的最大个数，自行定义
+	private static final List<Pipe> pool = new ArrayList<>(); // Cap nhat
+	private static final List<MovingPipe> movingPool = new ArrayList<>(); // Cap nhat
+	public static final int MAX_PIPE_COUNT = 30; // Nhom doi tuongCap nhat，Cap nhat
 	public static final int FULL_PIPE = (Constant.FRAME_WIDTH
 			/ (Pipe.PIPE_HEAD_WIDTH + GameElementLayer.HORIZONTAL_INTERVAL) + 2) * 2;
 
@@ -29,33 +29,33 @@ public class PipePool {
 	}
 
 	/**
-	 * 从对象池中获取一个对象
+	 * Cap nhatNhom doi tuongCap nhatLayCap nhat
 	 * 
-	 * @return 传入对象的类型，以判断从哪个对象池中获取
+	 * @return Cap nhat，Cap nhatKiem traCap nhatNhom doi tuongCap nhatLay
 	 */
 	public static Pipe get(String className) {
 		if ("Pipe".equals(className)) {
 			int size = pool.size();
 			if (size > 0) {
-				return pool.remove(size - 1); // 移除并返回最后一个
+				return pool.remove(size - 1); // Cap nhat
 			} else {
-				return new Pipe(); // 空对象池，返回一个新对象
+				return new Pipe(); // Cap nhatNhom doi tuong，Cap nhat
 			}
 		} else {
 			int size = movingPool.size();
 			if (size > 0) {
-				return movingPool.remove(size - 1); // 移除并返回最后一个
+				return movingPool.remove(size - 1); // Cap nhat
 			} else {
-				return new MovingPipe(); // 空对象池，返回一个新对象
+				return new MovingPipe(); // Cap nhatNhom doi tuong，Cap nhat
 			}
 		}
 	}
 
 	/**
-	 * 归还对象给容器
+	 * Cap nhat
 	 */
 	public static void giveBack(Pipe pipe) {
-		//判断类的类型
+		//Kiem traCap nhat
 		if(pipe.getClass() == Pipe.class) {
 			if (pool.size() < MAX_PIPE_COUNT) {
 				pool.add(pipe);

@@ -9,27 +9,27 @@ import com.kingyu.flappybird.util.Constant;
 import com.kingyu.flappybird.util.GameUtil;
 
 /**
- * 前景层，目前管理云朵的生成逻辑并绘制容器中的云朵
+ * Canh truocCap nhat，Cap nhatTao raCap nhatVeCap nhat
  *
  * @author Kingyu
  */
 public class GameForeground {
-    private final List<Cloud> clouds; // 云朵的容器
-    private final BufferedImage[] cloudImages; // 图片资源
-    private long time; // 控制云的逻辑运算周期
-    public static final int CLOUD_INTERVAL = 100; //云朵刷新的逻辑运算的周期
+    private final List<Cloud> clouds; // Cap nhat
+    private final BufferedImage[] cloudImages; // Hinh anhCap nhat
+    private long time; // Cap nhat
+    public static final int CLOUD_INTERVAL = 100; //Cap nhat
 
     public GameForeground() {
-        clouds = new ArrayList<>(); //云朵的容器
-        // 读入图片资源
+        clouds = new ArrayList<>(); //Cap nhat
+        // Cap nhatHinh anhCap nhat
         cloudImages = new BufferedImage[Constant.CLOUD_IMAGE_COUNT];
         for (int i = 0; i < Constant.CLOUD_IMAGE_COUNT; i++) {
             cloudImages[i] = GameUtil.loadBufferedImage(Constant.CLOUDS_IMG_PATH[i]);
         }
-        time = System.currentTimeMillis(); // 获取当前时间，用于控制云的逻辑运算周期
+        time = System.currentTimeMillis(); // LayCap nhat，Cap nhat
     }
 
-    // 绘制方法
+    // VeCap nhat
     public void draw(Graphics g, Bird bird) {
         cloudBornLogic();
         for (Cloud cloud : clouds) {
@@ -37,34 +37,34 @@ public class GameForeground {
         }
     }
 
-    // 云朵的控制
+    // Cap nhat
     private void cloudBornLogic() {
-        // 100ms运算一次
+        // 100msCap nhat
         if (System.currentTimeMillis() - time > CLOUD_INTERVAL) {
-            time = System.currentTimeMillis(); // 重置time
-            // 如果屏幕的云朵的数量小于允许的最大数量，根据给定的概率随机添加云朵
+            time = System.currentTimeMillis(); // Dat laitime
+            // Cap nhat，Cap nhatNgau nhienThemCap nhat
             if (clouds.size() < Constant.MAX_CLOUD_COUNT) {
                 try {
-                    if (GameUtil.isInProbability(Constant.CLOUD_BORN_PERCENT, 100)) { // 根据给定的概率添加云朵
-                        int index = GameUtil.getRandomNumber(0, Constant.CLOUD_IMAGE_COUNT); // 随机选取云朵图片
+                    if (GameUtil.isInProbability(Constant.CLOUD_BORN_PERCENT, 100)) { // Cap nhatThemCap nhat
+                        int index = GameUtil.getRandomNumber(0, Constant.CLOUD_IMAGE_COUNT); // Ngau nhienCap nhatHinh anh
 
-                        // 云朵刷新的坐标
-                        int x = Constant.FRAME_WIDTH; // 从屏幕左侧开始刷新
-                        // y坐标随机在上1/3屏选取
+                        // Cap nhat
+                        int x = Constant.FRAME_WIDTH; // Cap nhatBat dauCap nhat
+                        // yCap nhatNgau nhienCap nhat1/3Cap nhat
                         int y = GameUtil.getRandomNumber(Constant.TOP_BAR_HEIGHT, Constant.FRAME_HEIGHT / 3);
 
-                        //向容器中添加云朵
+                        //Cap nhatThemCap nhat
                         Cloud cloud = new Cloud(cloudImages[index], x, y);
                         clouds.add(cloud);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            } // 添加云朵
+            } // ThemCap nhat
 
-            // 若云朵飞出屏幕则从容器中移除
+            // Cap nhat
             for (int i = 0; i < clouds.size(); i++) {
-                // 遍历容器中的云朵
+                // Cap nhat
                 Cloud tempCloud = clouds.get(i);
                 if (tempCloud.isOutFrame()) {
                     clouds.remove(i);

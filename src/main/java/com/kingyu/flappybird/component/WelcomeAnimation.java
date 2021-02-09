@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
- * 游戏启动界面
+ * Cap nhat
  *
  * @author Kingyu
  *
@@ -17,7 +17,7 @@ public class WelcomeAnimation {
 	private final BufferedImage titleImg;
 	private final BufferedImage noticeImg;
 
-	private int flashCount = 0; // 图像闪烁参数
+	private int flashCount = 0; // Cap nhat
 
 	public WelcomeAnimation() {
 		titleImg = GameUtil.loadBufferedImage(Constant.TITLE_IMG_PATH);
@@ -29,8 +29,8 @@ public class WelcomeAnimation {
 		int y = Constant.FRAME_HEIGHT / 3;
 		g.drawImage(titleImg, x, y, null);
 
-		// 使notice的图像闪烁
-		final int CYCLE = 30; // 闪烁周期
+		// Cap nhatnoticeCap nhat
+		final int CYCLE = 30; // Cap nhat
 		if (flashCount++ > CYCLE)
 			GameUtil.drawImage(noticeImg, Constant.FRAME_WIDTH - noticeImg.getWidth() >> 1, Constant.FRAME_HEIGHT / 5 * 3, g);
 		if (flashCount == CYCLE * 2)

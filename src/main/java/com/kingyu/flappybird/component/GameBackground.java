@@ -7,17 +7,17 @@ import com.kingyu.flappybird.util.Constant;
 import com.kingyu.flappybird.util.GameUtil;
 
 /**
- * 游戏背景类，实现游戏背景的绘制
+ * Cap nhatNenCap nhat，Cap nhatNenCap nhatVe
  * 
  * @author Kingyu
  *
  */
 public class GameBackground {
 
-	private static final BufferedImage BackgroundImg;// 背景图片
+	private static final BufferedImage BackgroundImg;// NenHinh anh
 
-	private final int speed; // 背景层的速度
-	private int layerX; // 背景层的坐标
+	private final int speed; // NenCap nhatToc do
+	private int layerX; // NenCap nhat
 
 	public static final int GROUND_HEIGHT;
 
@@ -27,34 +27,34 @@ public class GameBackground {
 		GROUND_HEIGHT = BackgroundImg.getHeight() / 2;
 	}
 
-	// 在构造器中初始化
+	// Khoi tao trong constructor
 	public GameBackground() {
 		this.speed = Constant.GAME_SPEED;
 		this.layerX = 0;
 	}
 
-	// 绘制方法
+	// VeCap nhat
 	public void draw(Graphics g, Bird bird) {
-		// 绘制背景色
+		// VeNenCap nhat
 		g.setColor(Constant.BG_COLOR);
 		g.fillRect(0, 0, Constant.FRAME_WIDTH, Constant.FRAME_HEIGHT);
 
-		// 获得背景图片的尺寸
+		// Cap nhatNenHinh anhCap nhat
 		int imgWidth = BackgroundImg.getWidth();
 		int imgHeight = BackgroundImg.getHeight();
 
-		int count = Constant.FRAME_WIDTH / imgWidth + 2; // 根据窗口宽度得到图片的绘制次数
+		int count = Constant.FRAME_WIDTH / imgWidth + 2; // Cap nhatChieu rong cua soCap nhatHinh anhCap nhatVeCap nhat
 		for (int i = 0; i < count; i++) {
 			g.drawImage(BackgroundImg, imgWidth * i - layerX, Constant.FRAME_HEIGHT - imgHeight, null);
 		}
 		
-		if(bird.isDead()) {  //小鸟死亡则不再绘制
+		if(bird.isDead()) {  //ChimCap nhatVe
 			return;
 		}
 		movement();
 	}
 
-	// 背景层的运动逻辑
+	// NenCap nhat
 	private void movement() {
 		layerX += speed;
 		if (layerX > BackgroundImg.getWidth())

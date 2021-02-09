@@ -1,7 +1,7 @@
 package com.kingyu.flappybird.app;
 
 /**
- * 游戏入口
+ * Cap nhat
  * 
  * @author Kingyu
  *

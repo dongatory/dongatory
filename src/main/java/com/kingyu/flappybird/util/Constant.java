@@ -4,27 +4,27 @@ import java.awt.Color;
 import java.awt.Font;
 
 /**
- * 常量类
+ * Lop hang so
  * 
- * @author Kingyu 后续优化可写入数据库或文件中，便于修改
+ * @author Kingyu Cap nhat，Cap nhat
  */
 
 public class Constant {
-	// 窗口尺寸
+	// Cap nhat
 	public static final int FRAME_WIDTH = 420;
 	public static final int FRAME_HEIGHT = 640;
 
-	// 游戏标题
+	// Tieu de tro choi
 	public static final String GAME_TITLE = "Flappy Bird written by Kingyu";
 
-	// 窗口位置
+	// Vi tri cua so
 	public static final int FRAME_X = 600;
 	public static final int FRAME_Y = 100;
 
-	// 图像资源路径
-	public static final String BG_IMG_PATH = "resources/img/background.png"; // 背景图片
+	// Cap nhat
+	public static final String BG_IMG_PATH = "resources/img/background.png"; // NenHinh anh
 
-	// 小鸟图片
+	// ChimHinh anh
 	public static final String[][] BIRDS_IMG_PATH = {
 			{ "resources/img/0.png", "resources/img/1.png", "resources/img/2.png", "resources/img/3.png",
 					"resources/img/4.png", "resources/img/5.png", "resources/img/6.png", "resources/img/7.png" },
@@ -37,10 +37,10 @@ public class Constant {
 					"resources/img/dead.png", "resources/img/dead.png", "resources/img/dead.png",
 					"resources/img/dead.png", } };
 
-	// 云朵图片
+	// Cap nhatHinh anh
 	public static final String[] CLOUDS_IMG_PATH = { "resources/img/cloud_0.png", "resources/img/cloud_1.png" };
 
-	// 水管图片
+	// Ong nuocHinh anh
 	public static final String[] PIPE_IMG_PATH = { "resources/img/pipe.png", "resources/img/pipe_top.png",
 			"resources/img/pipe_bottom.png" };
 
@@ -50,31 +50,31 @@ public class Constant {
 	public static final String OVER_IMG_PATH = "resources/img/over.png";
 	public static final String AGAIN_IMG_PATH = "resources/img/again.png";
 
-	public static final String SCORE_FILE_PATH = "resources/score"; // 分数文件路径
+	public static final String SCORE_FILE_PATH = "resources/score"; // Diem soCap nhat
 
-	// 游戏速度（水管及背景层的移动速度）
+	// Toc do tro choi（Ong nuocCap nhatNenCap nhatDi chuyenToc do）
 	public static final int GAME_SPEED = 4;
 
-	// 游戏背景色
+	// Cap nhatNenCap nhat
 	public static final Color BG_COLOR = new Color(0x4bc4cf);
 
-	// 游戏刷新率
+	// Tan so lam moi tro choi
 	public static final int FPS = 1000 / 30;
 
-	// 标题栏高度
+	// Cap nhat
 	public static final int TOP_BAR_HEIGHT = 20;
 
-	// 地面高度
+	// Mat datCap nhat
 	public static final int GROUND_HEIGHT = 35;
 
-	// 上方管道加长
+	// Cap nhat
 	public static final int TOP_PIPE_LENGTHENING = 100;
 
-	public static final int CLOUD_BORN_PERCENT = 6; // 云朵生成的概率，单位为百分比
-	public static final int CLOUD_IMAGE_COUNT = 2; // 云朵图片的个数
-	public static final int MAX_CLOUD_COUNT = 7; // 云朵的最大数量
+	public static final int CLOUD_BORN_PERCENT = 6; // Cap nhatTao raCap nhat，Cap nhat
+	public static final int CLOUD_IMAGE_COUNT = 2; // Cap nhatHinh anhCap nhat
+	public static final int MAX_CLOUD_COUNT = 7; // Cap nhat
 
-	public static final Font CURRENT_SCORE_FONT = new Font("华文琥珀", Font.BOLD, 32);// 字体
-	public static final Font SCORE_FONT = new Font("华文琥珀", Font.BOLD, 24);// 字体
+	public static final Font CURRENT_SCORE_FONT = new Font("Cap nhat", Font.BOLD, 32);// Cap nhat
+	public static final Font SCORE_FONT = new Font("Cap nhat", Font.BOLD, 24);// Cap nhat
 
 }
